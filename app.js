@@ -1,51 +1,181 @@
-// JavaScript Document
-"use strict"
-const apiKey = '95a17c1f631843d4a4ec1d247df6f90c';
-const main = document.querySelector('main');
-const sourceSelector = document.querySelector('#sourceSelector');
-const defaultSource = 'Bild';
+const pushButton = document.querySelector('.js-push-btn');
+const applicationServerPublicKey = 'BFPaBx-KOaqCSAUy13jLO-YD95PUh0wVEbOzHRa2eVrYk6EJfns4vQ212lIm_bjdJ-7MwQwVL6ylBmI7ZSWoV5M';
+let isSubscribed = false;
+let swRegistration = null;
+var navEle = document.getElementById("myNavbar").children;
 
-function createArticle(article){
-    return `
-        <div class = "article">
-            <a href = "${article.url}">
-                <h2>${article.title}</h2>
-                <img src="${article.urlToImage}">
-                <p>${article.description}</p>
-            </a>
-        </div>
-    `;
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
 }
 
-async function updateNews(source = defaultSource) {
-    const res = await fetch(`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${apiKey}`);
-    const json = await res.json();
-
-    main.innerHTML = json.articles.map(createArticle).join('\n');
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("heroimg");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
 }
 
-async function updateSources() {
-    const res = await fetch(`https://newsapi.org/v2/sources?language=de&apiKey=${apiKey}`);
-    const json = await res.json();
+function urlB64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
 
-    sourceSelector.innerHTML = json.sources.map(src => `<option value="${src.id}">${src.name}</option>`).join('\n');
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+    document.getElementById("myBtn").style.display = "block";
+  } else {
+    document.getElementById("myBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+function showNews(){
+  document.getElementById("home").style.display = "none";
+  document.getElementById("news").style.display = "block";
+  document.getElementsByClassName("hero")[0].innerHTML = `<img class="heroimg" src="images/news.jpg" alt="" style="display:block">`;
+  navEle[1].classList.add("active");
+  navEle[0].classList.remove("active");
+  document.getElementById("fishbowlvideo").innerHTML = `<iframe width="100%" src="https://www.youtube.com/embed/8Q4uM9cZxVg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  document.getElementById("fishbowlimage").innerHTML = `<img src="images/news_fishbowl.png" alt="fishbowl discussion">`;
+}
+
+function showHome(){
+  document.getElementById("home").style.display = "block";
+  document.getElementById("news").style.display = "none";
+  navEle[0].classList.add("active");
+  navEle[1].classList.remove("active");
+  document.getElementById("hero").src = "images/slider1.png";
 }
 
 window.addEventListener('load', async e => {
-    updateNews();
-    await updateSources();
-    sourceSelector.value = defaultSource;
-
-    sourceSelector.addEventListener('change', e => {
-        updateNews(e.target.value);
+  if('serviceWorker' in navigator && 'PushManager' in window) {
+    console.log('Service Worker and Push is supported');
+  
+    navigator.serviceWorker.register('sw.js')
+    .then(function(swReg) {
+      console.log('Service Worker is registered', swReg);
+  
+      swRegistration = swReg;
+      initializeUI();
+    })
+    .catch(function(error) {
+      console.error('Service Worker Error', error);
     });
-
-    if('serviceWorker' in navigator){
-        try {
-            navigator.serviceWorker.register('sw.js');
-            console.log('SW registered');
-        } catch(error) {
-            console.log('SW reg failed');
-        }
-    }
+  } else {
+    console.warn('Push messaging is not supported');
+    pushButton.textContent = 'Push Not Supported';
+  }
 });
+
+function initializeUI() {
+  pushButton.addEventListener('click', function() {
+    pushButton.disabled = true;
+    if (isSubscribed) {
+      unsubscribeUser();
+    } else {
+      subscribeUser();
+    }
+  });
+
+  // Set the initial subscription value
+  swRegistration.pushManager.getSubscription()
+  .then(function(subscription) {
+    isSubscribed = !(subscription === null);
+
+    if (isSubscribed) {
+      console.log('User IS subscribed.');
+    } else {
+      console.log('User is NOT subscribed.');
+    }
+
+    updateBtn();
+  });
+}
+
+function updateBtn() {
+  if (Notification.permission === 'denied') {
+    pushButton.textContent = 'Push Messaging Blocked.';
+    pushButton.disabled = true;
+    updateSubscriptionOnServer(null);
+    return;
+  }
+
+  if (isSubscribed) {
+    pushButton.textContent = 'Disable Push Messaging';
+  } else {
+    pushButton.textContent = 'Enable Push Messaging';
+  }
+
+  pushButton.disabled = false;
+}
+
+function subscribeUser() {
+  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+  swRegistration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: applicationServerKey
+  })
+  .then(function(subscription) {
+    console.log('User is subscribed.');
+
+    updateSubscriptionOnServer(subscription);
+
+    isSubscribed = true;
+
+    updateBtn();
+  })
+  .catch(function(err) {
+    console.log('Failed to subscribe the user: ', err);
+    updateBtn();
+  });
+}
+
+function unsubscribeUser() {
+  swRegistration.pushManager.getSubscription()
+  .then(function(subscription) {
+    if (subscription) {
+      return subscription.unsubscribe();
+    }
+  })
+  .catch(function(error) {
+    console.log('Error unsubscribing', error);
+  })
+  .then(function() {
+    updateSubscriptionOnServer(null);
+
+    console.log('User is unsubscribed.');
+    isSubscribed = false;
+
+    updateBtn();
+  });
+}
+
+function updateSubscriptionOnServer(subscription) {
+  console.log(JSON.stringify(subscription));
+  // TODO: Send subscription to application server
+}

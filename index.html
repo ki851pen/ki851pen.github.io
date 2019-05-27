@@ -1,28 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US" class="">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>News</title>
-	<link rel="stylesheet" href="styles.css">
-	<link rel="manifest" href="manifest.json">
-	<meta name="theme-color" content="#eeeeee"/>
-
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-title" content="Weather PWA">
-	<link rel="apple-touch-icon" href="/images/icons/icon-152x152.png">
-	<meta name="description" content="A sample news app">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>werk_39 &#8211; Beyond the Product &#8211; Co Innovation</title>
+  <meta name="description" content="Werk 39 sample PWA">
+  <link rel="stylesheet" href="styles.css?2">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#e9425c"/>
+  <script type="text/javascript"></script>
 </head>
 <body>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">&uarr;</button>
 	<header>
-		<h1>News</h1>
-		<p>powered by NewsAPI.org</p>
-		<select autofocus id="sourceSelector"></select>
+		<div class = "stickyheader">
+			<a class = "logo" onclick="showHome()"><img src="images/logo_long.png" alt="werk 39 logo"></a>
+			<div class = "hamburger">
+				<ul style="list-style: none; padding: 0; margin: 5px; cursor: pointer;">
+					<li><a onclick="showNews()">About Us</a></li>
+					<li><a onclick="showNews()">Event</a></li>
+					<li><a onclick="showNews()">News</a></li>
+				</ul>
+			</div>
+		</div>
 	</header>
-	<main></main>
-	<script src="app.js"></script>
-	<!-- <script src="install.js"></script> -->
+	<div class= "hero">
+		<img class="heroimg" src="https://www.werk39.com/wp-content/uploads/180313_werk39_homepage_beyond_ps.png" alt="beyond the product">
+		<img class="heroimg" src="https://www.werk39.com/wp-content/uploads/we_innovate-2.png" alt="we innovate">
+		<img class="heroimg" src="https://www.werk39.com/wp-content/uploads/creative_space-2.png" alt="creative space">
+		<img class="heroimg" src="https://www.werk39.com/wp-content/uploads/co_creation_and_more-2.png" alt="co-creation & more">
+		<div class="button" id="leftbutton" onclick="plusDivs(-1)">&#10094;</div>
+		<div class="button" id="rightbutton" onclick="plusDivs(+1)">&#10095;</div>
+	</div>
+	<main>
+		<div id = "home">
+			<div>
+				<h2 class = "headline">our heart beats for</h2>
+				<h3>CO-CREATION, CO-INNOVATION, RAPID SERVICE PROTOTYPING, DESIGN THINKING, DIGITAL</h3>
+				<p>By offering products, we can solve many problems. But what if we think beyond the product? 
+					What if we apply new technologies and create “products” within their context of usage? 
+					Turning “products” into holistic solutions is the great adventure of our time.</p>
+				<p>To explore this new frontier beyond the horizon, we provide an agile start-up-like infrastructure, 
+					methodology, and spirit for innovations. Discover a world in which users and customers join in to create solutions 
+					or new business models to better fit their needs. Together, we are contributing to the future of medTech.</p>
+			</div>
+			<div class="blue">
+				<h2 class="headline_white">co-innovation portfolio</h2>
+				<div class="flex">
+					<div>
+						<img src="images/portfolio_accelerator.png" alt="">
+					</div>
+					<div>
+						<img src="images/portfolio_ideation.png" alt="">
+					</div>
+					<div>
+						<img src="images/portfolio_scale.png" alt="">
+					</div>
+					<div>
+						<img src="images/portfolio_space.png" alt="">
+					</div>
+				</div>
+			</div>
+			<div>
+				<h2 class = "headline">how we work</h2>
+				<h3>OUR APPROACH AND OPERATING MODEL</h3>
+				<p>There is no innovation without failure. Failure is learning and part to develop new ideas and solutions.</p>
+				<p>We value failure, because every attempt brings us closer to our goal.</p>
+				<p>What we also care about are users, healthcare professionals and patients. 
+					It is our goal to improve their daily life and work.
+					Thus, we invite them to share their opinions, ideas and needs for developing solutions together.</p>
+				<img src="images/workingmodel.png" alt="our workingmodel">
+			</div>
+			<div class = "blue">
+				<h2>INITIATE</h2>
+				<p>We want to inspire you to find great ideas for sales support tools, services, 
+					solutions and business models. This might happen in our workshops, events or during dedicated call for projects. 
+					We foster the spirit to act as an entrepreneur in the own company.</p>
+				<h2>DISCOVER</h2>
+				<p>We identify and evaluate internal and external ideas for beyond-the-product solutions. 
+					If we identify that there is a strategic fit and entrepreneurial spirit, 
+					we work together to create a first prototype. We listen very early and carefully to our customer’s voices. 
+					We also encourage ourselves to reject ideas. We believein “fail early, fail cheap”.</p>
+				<h2>EXPERIMENT</h2>	
+				<p>Services and digital innovations are different to classic product development – this is also true in healthcare. 
+					Deep knowledge of customer processes, problems and pain points gives us the possibility 
+					to develop advanced solutions for the healthcare community. We use services and 
+					digital technology to create a future hospital world that is safer, more intelligent, faster, cost-effective, 
+					and always focused on the patient outcome. To create this world we experiment with prototypes 
+					in constant iterative cycles with users and customers.</p>
+				<h2>BUILD</h2>
+				<p>We only build to a minimal viable product level, taking what has survived the previous stages. 
+					We strongly believe that “fast” prototypes at a sufficient functionality win over “perfect” at lengthy timelines. 
+					Our experience tells us that agility can only be achieved by testing, iterating and discussing over and over. 
+					Our close interface to regulatory and legal experts help to make the right decisions at the right time.</p>
+				<h2>TRANSFER</h2>	
+				<p>Our aim is to turn inventions into innovations. 
+					Therefore we welcome every idea and minimal viable product we have created – 
+					but our mission is to allow for scalability into the healthcare community. 
+					With the transfer phase we give our global customer base access to ideas once developed in werk_39. 
+					Our experience has shown that sales and operations are the backbone to scale. 
+					Therefore we involve and integrate our corporate and local teams at the earliest possible phase.</p>
+				<h2>CULTURE</h2>
+				<p>At werk_39 we rather ask for forgiveness than for permission. 
+					We have the privilege to build something new with full management support. 
+					They trust in us and our concept, and we want to pay back to our mothership by 
+					delivering business-relevant beyond-the-product innovation and cultural impact.</p>
+			</div>
+			<div>
+				<h2 class="headline">your career in medTech</h2>
+				<h3>HELLO UX-DESIGNERS, DATA SCIENTISTS, DESIGN THINKERS, AND SOFTWARE ARCHITECTS</h3>
+				<p>To all unconvential thinkers, creative makers, and full-blown developers. 
+					Your next career opportunity lies right in the middle of the medTech Valley.</p>
+				<p>A place between tradition and innovation, with cozy countrysides for fun and family happiness 
+					as well as top-notch medTech known around the world. Join us to create the future of healthcare.</p>
+				<p>We welcome digital savvy students, engineers and people who want to make and shake.</p>
+				<h2 class="headline">results</h2>
+				<h3>OUR MEDTECH INNOVATION BLOG FOR LATEST NEWS, EVENTS, AND PROJECTS</h3>
+			</div>
+		</div>
+		<div id = "news">
+			<div class = "newsarticle">	
+				<button disabled class="js-push-btn">Enable Push Messaging</button>
+				<div id = "fishbowlimage"></div>
+				<h2><span class="headline">fishbowl discussion</span></h2>
+				<h3>WHAT IS FISHBOWL?</h3>
+				<p>A fishbowl discussion is a form of conversational exchange that can be used when discussing topics within groups. 
+					On the medtech_shakers last week, we introduced und held a fishbowl session for our customers and B.Braun staff members. 
+					At the beginning of the session, they saw a short video clip. 
+					In the video, we listed and explained four important factors in a fishbowl discussion. 
+					After receiving all the essential information from the video, they were able to try this method out.</p>
+				<div id = "fishbowlvideo"></div>
+			</div>
+			<div class = "newsarticle">
+				<h2>test news2</h2>
+				<p>.................</p>
+			</div>
+			<div class = "newsarticle">
+				<h2>test news3</h2>
+				<p>.................</p>
+			</div>
+		</div>
+	</main>
+	<footer>
+		<div class = "logo_adress">
+			<img src="images/logo_white.png" alt="werk39 logo">
+			<div class = "grouptext">
+				<p>werk_39</p>
+				<p class = "emphasis">Rote Strasse 1</p>
+				<p>78532 Tuttlingen</p>
+			</div>
+		</div>
+		<div class="iconcredit">Icons made by 
+			<a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a>,
+			<a href="https://www.freepik.com/?__hstc=57440181.4e83da602b69dc9b58a489a5384f894c.1558682589867.1558682589867.1558682589867.1&__hssc=57440181.8.1558682589869&__hsfp=3880943840" title="Freepik">Freepik</a> and 
+			<a href="https://www.flaticon.com/authors/appzgear" title="Appzgear">Appzgear</a> 
+			from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+			is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener">
+			CC 3.0 BY</a>
+		</div>
+	</footer>
+	<div class="navbar" id="myNavbar">
+		<a onclick="showHome()" class="active">
+			<img src="images/icons/home.svg" alt="">Home</a>
+		<a onclick="showNews()" class="">
+			<img src="images/icons/newspaper.svg" alt="">News</a>
+		<a onclick="showNews()">
+			<img src="images/icons/about-us.svg" alt=""> About</a>
+		<a onclick="showNews()">
+			<img src="images/icons/calendar-icon.svg" alt=""> Event</a>
+	</div>
+	<script src="App.js"></script>
 </body>
 </html>
