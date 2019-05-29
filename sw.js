@@ -1,4 +1,4 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
+importScripts('node_modules/workbox-sw/build/workbox-sw.js');
 workbox.precaching.precacheAndRoute([
   {
     "url": "App.js",
