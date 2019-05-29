@@ -1,4 +1,4 @@
-importScripts('./node_modules/workbox-sw/build/workbox-sw.js')
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 workbox.precaching.precacheAndRoute([
   {
     "url": "App.js",
@@ -93,32 +93,3 @@ workbox.routing.registerRoute(
     })
   );
   
-  self.addEventListener('push', function(event) {
-    console.log('[Service Worker] Push Received.');
-    console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
-  
-    const title = 'Test Push';
-    const options = {
-      body: 'PLEASE CLICK!!',
-      icon: 'images/logo.png',
-      badge: 'images/logo.png'
-    };
-    event.waitUntil(self.registration.showNotification(title, options));
-  });
-  
-  self.addEventListener('notificationclose', function(e) {
-    var notification = e.notification;
-    var primaryKey = notification.data.primaryKey;
-  
-    console.log('Closed notification: ' + primaryKey);
-  });
-  
-  self.addEventListener('notificationclick', function(event) {
-    console.log('[Service Worker] Notification click Received.');
-    
-    event.notification.close();
-  
-    event.waitUntil(
-      clients.openWindow('https://google.com/')
-    );
-  });
