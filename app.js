@@ -69,10 +69,16 @@ function showHome(){
   document.getElementById("news").style.display = "none";
   navEle[0].classList.add("active");
   navEle[1].classList.remove("active");
-  document.getElementById("hero").src = "images/slider1.png";
+  document.getElementsByClassName("hero")[0].innerHTML = `<img class="heroimg" src="https://www.werk39.com/wp-content/uploads/180313_werk39_homepage_beyond_ps.png" alt="beyond the product">
+  <img class="heroimg" src="https://www.werk39.com/wp-content/uploads/we_innovate-2.png" alt="we innovate">
+  <img class="heroimg" src="https://www.werk39.com/wp-content/uploads/creative_space-2.png" alt="creative space">
+  <img class="heroimg" src="https://www.werk39.com/wp-content/uploads/co_creation_and_more-2.png" alt="co-creation & more">
+  <div class="button" id="leftbutton" onclick="plusDivs(-1)">&#10094;</div>
+  <div class="button" id="rightbutton" onclick="plusDivs(+1)">&#10095;</div>`;
+  showDivs(1);
 }
 
-window.addEventListener('load', async e => {
+ window.addEventListener('load', async e => {
   if('serviceWorker' in navigator && 'PushManager' in window) {
     console.log('Service Worker and Push is supported');
   
@@ -80,18 +86,18 @@ window.addEventListener('load', async e => {
     .then(function(swReg) {
       console.log('Service Worker is registered', swReg);
   
-      swRegistration = swReg;
-      initializeUI();
+      //swRegistration = swReg;
+      //initializeUI();
     })
     .catch(function(error) {
       console.error('Service Worker Error', error);
     });
   } else {
     console.warn('Push messaging is not supported');
-    pushButton.textContent = 'Push Not Supported';
+    //pushButton.textContent = 'Push Not Supported';
   }
 });
-
+/*
 function initializeUI() {
   pushButton.addEventListener('click', function() {
     pushButton.disabled = true;
@@ -178,4 +184,4 @@ function unsubscribeUser() {
 function updateSubscriptionOnServer(subscription) {
   console.log(JSON.stringify(subscription));
   // TODO: Send subscription to application server
-}
+} */

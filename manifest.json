@@ -1,6 +1,8 @@
 {
-  "name": "Werk39 Sample  PWA",
-  "short_name": "Sample",
+  "gcm_sender_id": "482941778795",
+  "gcm_sender_id_comment": "Do not change the GCM Sender ID",
+  "name": "werk_39 Sample PWA",
+  "short_name": "werk_39",
   "theme_color": "#e9425c",
   "background_color": "#767676",
   "display": "standalone",
