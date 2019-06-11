@@ -1,8 +1,20 @@
 importScripts('workbox-sw.js');
 workbox.precaching.precacheAndRoute([
   {
-    "url": "App.js",
-    "revision": "86be8e0a0960635c2917ce9052ea6366"
+    "url": "app.js",
+    "revision": "7ba103af3a8fa844af3bfe3abbcb27cc"
+  },
+  {
+    "url": "images/icons/about-us.svg",
+    "revision": "09ae6283256ecb4bd4cb4046365a250c"
+  },
+  {
+    "url": "images/icons/calendar-icon.svg",
+    "revision": "fbe46acbc2700086fbef8dbb9eeac0d2"
+  },
+  {
+    "url": "images/icons/home.svg",
+    "revision": "569e8718e1d1244cee61ab3dcd7f229d"
   },
   {
     "url": "images/icons/icon-128x128.png",
@@ -35,6 +47,14 @@ workbox.precaching.precacheAndRoute([
   {
     "url": "images/icons/icon-96x96.png",
     "revision": "547b5d29e0a9eb36691e0e057e62db9e"
+  },
+  {
+    "url": "images/icons/list.svg",
+    "revision": "802cee8f0bfcc4c61ab25fb025224fcc"
+  },
+  {
+    "url": "images/icons/newspaper.svg",
+    "revision": "4f2ec37686a587c98a6ec81ff4fe8b75"
   },
   {
     "url": "images/logo_long.png",
@@ -78,7 +98,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "062d07bb757722a64d53ea0d28574de6"
+    "revision": "f481c4b81766871cf6e3d33cdd28f943"
+  },
+  {
+    "url": "manifest.json",
+    "revision": "3506a00632d2849b7987a73bcb102ef4"
   },
   {
     "url": "styles.css",
