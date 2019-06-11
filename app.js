@@ -1,6 +1,3 @@
-const pushButton = document.querySelector('.js-push-btn');
-let isSubscribed = false;
-let swRegistration = null;
 var navEle = document.getElementById("myNavbar").children;
 
 var slideIndex = 1;
@@ -19,21 +16,6 @@ function showDivs(n) {
     x[i].style.display = "none";  
   }
   x[slideIndex-1].style.display = "block";  
-}
-
-function urlB64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(/\-/g, '+')
-    .replace(/_/g, '/');
-
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
 }
 
 // When the user scrolls down 20px from the top of the document, show the button
