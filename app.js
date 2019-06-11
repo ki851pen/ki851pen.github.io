@@ -1,5 +1,4 @@
 const pushButton = document.querySelector('.js-push-btn');
-const applicationServerPublicKey = 'BFPaBx-KOaqCSAUy13jLO-YD95PUh0wVEbOzHRa2eVrYk6EJfns4vQ212lIm_bjdJ-7MwQwVL6ylBmI7ZSWoV5M';
 let isSubscribed = false;
 let swRegistration = null;
 var navEle = document.getElementById("myNavbar").children;
@@ -77,19 +76,3 @@ function showHome(){
   <div class="button" id="rightbutton" onclick="plusDivs(+1)">&#10095;</div>`;
   showDivs(1);
 }
-
- window.addEventListener('load', async e => {
-  if('serviceWorker' in navigator && 'PushManager' in window) {
-    console.log('Service Worker and Push is supported');
-  
-    navigator.serviceWorker.register('sw.js')
-    .then(function(swReg) {
-      console.log('Service Worker is registered', swReg);
-    })
-    .catch(function(error) {
-      console.error('Service Worker Error', error);
-    });
-  } else {
-    console.warn('Push messaging is not supported');
-  }
-});
