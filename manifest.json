@@ -4,7 +4,7 @@
   "name": "werk_39 Sample PWA",
   "short_name": "werk_39",
   "theme_color": "#e9425c",
-  "background_color": "#767676",
+  "background_color": "#ed687d",
   "display": "standalone",
   "start_url": "./index.html",
   "icons": [

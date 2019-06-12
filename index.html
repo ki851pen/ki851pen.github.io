@@ -7,8 +7,13 @@
 	<meta name="description" content="Werk 39 sample PWA">
 	<link rel="stylesheet" href="styles.css?2">
 	<link rel="manifest" href="manifest.json">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#e9425c">
+	<meta name="apple-mobile-web-app-title" content="werk_39">
+	<link rel="apple-touch-icon" href="/images/icons/icon-152x152.png">
+	<meta name="theme-color" content="#e9425c"/>
 	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-	<script async>
+	<script>
 		var OneSignal = window.OneSignal || [];
 		OneSignal.push(function() {
 		OneSignal.init({
@@ -25,8 +30,6 @@
 		}
 		});
 	</script>
-	<link rel="apple-touch-icon" href="/images/icons/icon-152x152.png">
-	<meta name="theme-color" content="#e9425c"/>
 </head>
 <body>
 	<button onclick="topFunction()" id="myBtn" title="Go to top">&uarr;</button>
