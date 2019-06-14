@@ -1,4 +1,6 @@
 importScripts('workbox-sw.js');
+//precache with workbox CLI
+//workbox wizard --injectManifest
 workbox.precaching.precacheAndRoute([
   {
     "url": "app.js",
@@ -111,9 +113,29 @@ workbox.precaching.precacheAndRoute([
 ]);
 
 workbox.routing.registerRoute(
-    new RegExp('https://www.youtube.com/(.*)'), 
-    new workbox.strategies.CacheFirst({
+    new RegExp('https://www.youtube.com/(.*)'), //match request
+    new workbox.strategies.CacheFirst({ //Strategie auswählen
       cacheExpiration: { maxEntriea: 20, maxAgeSeconds: 12 * 60 * 60 }
     })
   );
+
+  workbox.routing.registerRoute(
+    'http://localhost:7071/api/HttpTrigger', //match request
+    new workbox.strategies.CacheFirst({ //Strategie auswählen
+      cacheExpiration: {maxAgeSeconds: 12 * 60 * 60 }
+    })
+  );
+
+
+/* Beispiel catch Handler falls, not match
+workbox.routing.setCatchHandler(({event}) => {
+  switch (event.request.destination) {
+    case 'document':
+      return caches.match(workbox.precaching.getCacheKeyForURL("fallback.json"));
+    case 'image':
+      return caches.match(workbox.precaching.getCacheKeyForURL("images/Sorry.jpg"));
+    default:
+      return Response.error();
+  }
+}); */
   

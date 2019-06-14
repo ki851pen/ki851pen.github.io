@@ -1,4 +1,5 @@
 var navEle = document.getElementById("myNavbar").children;
+var cap = document.getElementById("cap");
 
 var slideIndex = 1;
 showDivs(slideIndex);
@@ -18,7 +19,6 @@ function showDivs(n) {
   x[slideIndex-1].style.display = "block";  
 }
 
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
@@ -43,6 +43,7 @@ function showNews(){
   navEle[0].classList.remove("active");
   document.getElementById("fishbowlvideo").innerHTML = `<iframe width="100%" src="https://www.youtube.com/embed/8Q4uM9cZxVg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
   document.getElementById("fishbowlimage").innerHTML = `<img src="images/news_fishbowl.png" alt="fishbowl discussion">`;
+  getData();
 }
 
 function showHome(){
@@ -58,3 +59,27 @@ function showHome(){
   <div class="button" id="rightbutton" onclick="plusDivs(+1)">&#10095;</div>`;
   showDivs(1);
 }
+
+function getData(){
+  fetch('http://localhost:7071/api/HttpTrigger',{mode :'cors'})
+    .then(function(response) {
+      return response.json();
+    }).catch(function(error) {
+      console.error('Fetch Error', error)
+      cap.innerHTML = `<p>can't get data</p>`;
+    }).then(function(data){
+      cap.innerHTML = `<div class = "box"><h2>Capcounter</h2><p>Ingesamt ${data.total} Flasche geöffnet.</p>
+      <p>Heute ${data.today} Flasche geöffnet.</p><p>Letzte Stunde ${data.lasthour} Flasche geöffnet.</p>
+      <p>Letzte fünf Minute ${data.fivemin} Flasche geöffnet.</p><p>Letzte Nutzung um ${data.lastuse}.</p></div>`;
+      total = data.total;
+    });
+}
+
+document.getElementById("post").addEventListener("click", function() {
+  fetch('http://localhost:7071/api/HttpTrigger', {
+    method: 'POST',
+    mode: 'cors',
+    body: ''
+  });
+  getData();
+});
