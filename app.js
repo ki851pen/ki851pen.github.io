@@ -68,7 +68,7 @@ function getData(){
       console.error('Fetch Error', error)
       cap.innerHTML = `<p>can't get data</p>`;
     }).then(function(data){
-      cap.innerHTML = `<div class = "box"><h2>Capcounter</h2><p>Ingesamt ${data.total} Flasche geöffnet.</p>
+      cap.innerHTML = `<div class = "box"><p>Ingesamt ${data.total} Flasche geöffnet.</p>
       <p>Heute ${data.today} Flasche geöffnet.</p><p>Letzte Stunde ${data.lasthour} Flasche geöffnet.</p>
       <p>Letzte fünf Minute ${data.fivemin} Flasche geöffnet.</p><p>Letzte Nutzung um ${data.lastuse}.</p></div>`;
       total = data.total;
