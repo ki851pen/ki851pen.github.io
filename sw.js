@@ -121,7 +121,7 @@ workbox.routing.registerRoute(
 
   workbox.routing.registerRoute(
     'http://localhost:7071/api/HttpTrigger', //match request
-    new workbox.strategies.CacheFirst({ //Strategie auswählen
+    new workbox.strategies.NetworkFirst({ //Strategie auswählen
       cacheExpiration: {maxAgeSeconds: 12 * 60 * 60 }
     })
   );
